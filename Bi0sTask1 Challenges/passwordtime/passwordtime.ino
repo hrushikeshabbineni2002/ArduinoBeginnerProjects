@@ -4,35 +4,24 @@
 #define TIME_REQUEST "Enter No"
 
 String password ;
-String correctpassword = String("HelloArduino");
+String correctpassword = String("HALOYOLO");
 
 void setup() 
 {
   Serial.begin(9600);
-  
 }
 
 void loop() 
 {
   if (Serial.available()>0)
-  {   
-    for( int i =5 ; i>0 ; i++)
-    {
-      password = String(Serial.readString());
-      if (password.equals(correctpassword))
-      {
-        Serial.println("correct Password");
-      break;
-      }
-      else 
-      {
-        Serial.println("incorrect Password");
-      }
-    }
+  {
+    if (check() == true)
+      Serial.print("Correct Password");
+    else
+      Serial.print("Incorrect Password");
+  }
     setSyncProvider(requestSync);
     processSyncMessage();
-  }
-  
   if (timeStatus()==timeSet)
   { 
     digitalClockDisplay();
@@ -41,6 +30,18 @@ void loop()
   delay(1000);
 }
 
+bool check()
+{
+    password = Serial.readString();
+    if (password.equals(correctpassword))
+    { 
+      return true ;
+    }
+    else
+    {
+      return false ; 
+    }
+}
 void digitalClockDisplay()
 {
   edittimedisplay(hour());
