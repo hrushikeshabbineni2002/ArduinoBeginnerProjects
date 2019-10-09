@@ -1,5 +1,5 @@
-int inpin = 2;
-int outpin = 8;
+int inpin = 2;//input pin
+int outpin = 8;//output pin
 void setup()
 {
   pinMode(2,INPUT);
